@@ -29,7 +29,10 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/list': (context) => PersonList(),
-        '/info': (context) => PersonInfo(),
+        '/info': (context) {
+          final id = ModalRoute.of(context)!.settings.arguments as int;
+          return PersonInfo(personId: id);
+        },
       },
       initialRoute: '/list',
     );

@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
-class PersonInfo extends StatelessWidget {
-  const PersonInfo({Key? key}) : super(key: key);
+class PersonInfo extends StatefulWidget {
+  final int personId;
+  PersonInfo({Key? key, required this.personId}) : super(key: key);
 
+  @override
+  State<PersonInfo> createState() => _PersonInfoState();
+}
+
+class _PersonInfoState extends State<PersonInfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
