@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
 
-class PersonInfo extends StatefulWidget {
-  final int personId;
-  PersonInfo({Key? key, required this.personId}) : super(key: key);
+class PersonInfo extends StatelessWidget {
+  final String name;
+  final String status;
+  final String species;
+  final String gender;
+  final String origin;
+  final String location;
+  final String image;
+  const PersonInfo({
+    Key? key,
+    required this.name,
+    required this.status,
+    required this.species,
+    required this.gender,
+    required this.origin,
+    required this.location,
+    required this.image,
+  }) : super(key: key);
 
-  @override
-  State<PersonInfo> createState() => _PersonInfoState();
-}
-
-class _PersonInfoState extends State<PersonInfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +27,7 @@ class _PersonInfoState extends State<PersonInfo> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios_new_rounded,
               color: Colors.black,
               size: 28,
@@ -43,7 +53,7 @@ class _PersonInfoState extends State<PersonInfo> {
               decoration: BoxDecoration(
                   color: Colors.grey.shade600,
                   border: Border.all(color: Colors.black.withOpacity(0.2)),
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.1),
@@ -57,11 +67,10 @@ class _PersonInfoState extends State<PersonInfo> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 120.0),
-                    child: const Center(
+                    child: Center(
                       child: Text(
-                        'Shmlona Shmlobinson',
-                        // person.name,
-                        style: TextStyle(
+                        name,
+                        style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.w900,
                             color: Colors.white),
@@ -73,7 +82,7 @@ class _PersonInfoState extends State<PersonInfo> {
                   Center(
                     child: Container(
                       height: 30,
-                      width: 170,
+                      width: status == 'Unknown' ? 220 : 170,
                       decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -85,21 +94,21 @@ class _PersonInfoState extends State<PersonInfo> {
                             width: 10,
                             height: 10,
                             decoration: BoxDecoration(
-                                color: Colors.red,
-                                // color: person.status == 'Dead'
-                                //     ? Colors.redAccent
-                                //     : person.status == 'Unknown'
-                                //         ? Colors.grey.shade300
-                                //         : Color.fromARGB(255, 136, 255, 0),
+                                color: status == 'Dead'
+                                    ? Colors.redAccent
+                                    : status == 'Unknown'
+                                        ? Colors.grey
+                                        : const Color.fromARGB(
+                                            255, 136, 255, 0),
                                 borderRadius: BorderRadius.circular(10)),
                           ),
-                          SizedBox(width: 5),
+                          const SizedBox(width: 5),
                           RichText(
                             text: TextSpan(children: [
                               TextSpan(
-                                text: 'Dead',
+                                text: status,
                                 //  person.status,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 17,
                                   fontWeight: FontWeight.w400,
@@ -114,9 +123,9 @@ class _PersonInfoState extends State<PersonInfo> {
                                 ),
                               ),
                               TextSpan(
-                                text: 'Human',
+                                text: species,
                                 //  person.species,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 17,
                                   fontWeight: FontWeight.w400,
@@ -147,9 +156,9 @@ class _PersonInfoState extends State<PersonInfo> {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      const TextSpan(
-                        text: 'Female',
-                        style: TextStyle(
+                      TextSpan(
+                        text: gender,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 17,
                           fontWeight: FontWeight.w600,
@@ -174,9 +183,9 @@ class _PersonInfoState extends State<PersonInfo> {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      const TextSpan(
-                        text: 'Unknown',
-                        style: TextStyle(
+                      TextSpan(
+                        text: origin,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 17,
                           fontWeight: FontWeight.w600,
@@ -202,8 +211,8 @@ class _PersonInfoState extends State<PersonInfo> {
                           ),
                         ),
                         Text(
-                          'Interdimensional Cable',
-                          style: TextStyle(
+                          location,
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 17,
                             fontWeight: FontWeight.w600,
@@ -212,7 +221,7 @@ class _PersonInfoState extends State<PersonInfo> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 10)
+                  const SizedBox(height: 10)
                 ],
               ),
             ),
@@ -231,9 +240,8 @@ class _PersonInfoState extends State<PersonInfo> {
                     decoration:
                         BoxDecoration(borderRadius: BorderRadius.circular(50)),
                     child: Image.network(
-                      'https://rickandmortyapi.com/api/character/avatar/316.jpeg',
+                      image,
                     ),
-                    //image для API
                   ),
                 ),
               ],

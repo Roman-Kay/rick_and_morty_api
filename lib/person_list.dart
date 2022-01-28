@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty_app/person_info.dart';
-import 'dart:ui';
 
 class Person {
   final int id;
   final String name;
   final String status;
   final String species;
+  final String gender;
   final String origin;
   final String location;
   final String image;
@@ -15,6 +14,7 @@ class Person {
     required this.name,
     required this.status,
     required this.species,
+    required this.gender,
     required this.origin,
     required this.location,
     required this.image,
@@ -35,6 +35,7 @@ class _PersonListState extends State<PersonList> {
       name: 'Cop Morty',
       status: 'Dead',
       species: 'Human',
+      gender: 'Mail',
       origin: 'Citadel of Ricks',
       location: 'The Ricklantis Mixup',
       image: "https://rickandmortyapi.com/api/character/avatar/73.jpeg",
@@ -44,6 +45,7 @@ class _PersonListState extends State<PersonList> {
       name: 'Yellow Shirt Rick',
       status: 'Unknown',
       species: 'Human',
+      gender: 'Mail',
       origin: 'Citadel of Ricks',
       location: 'The Rickshank Rickdemption',
       image: "https://rickandmortyapi.com/api/character/avatar/385.jpeg",
@@ -53,6 +55,7 @@ class _PersonListState extends State<PersonList> {
       name: 'Shmlona Shmlobinson',
       status: 'Alive',
       species: 'Human',
+      gender: 'Femail',
       origin: 'Interdimensional Cable',
       location: 'Rixty Minutes',
       image: "https://rickandmortyapi.com/api/character/avatar/316.jpeg",
@@ -83,11 +86,7 @@ class _PersonListState extends State<PersonList> {
   }
 
   void _onPersonTap(int index) {
-    final id = _person[index].id;
-    Navigator.of(context).pushNamed(
-      '/info',
-      arguments: id,
-    );
+    Navigator.of(context).pushNamed('/info', arguments: _person[index]);
   }
 
   @override
@@ -105,7 +104,7 @@ class _PersonListState extends State<PersonList> {
             ),
           )),
       body: ListView.builder(
-          padding: EdgeInsets.only(top: 10),
+          padding: const EdgeInsets.only(top: 10),
           itemCount: _filteredPerson.length,
           itemExtent: 150,
           itemBuilder: (BuildContext context, int index) {
@@ -132,7 +131,7 @@ class _PersonListState extends State<PersonList> {
                     child: Row(
                       children: [
                         Image.network(person.image),
-                        SizedBox(
+                        const SizedBox(
                           width: 15,
                         ),
                         Expanded(
@@ -142,14 +141,14 @@ class _PersonListState extends State<PersonList> {
                               SizedBox(height: 7),
                               Text(
                                 person.name,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w900,
                                     color: Colors.white),
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),
-                              SizedBox(height: 2),
+                              const SizedBox(height: 2),
                               Row(
                                 children: [
                                   Container(
@@ -160,7 +159,7 @@ class _PersonListState extends State<PersonList> {
                                             ? Colors.redAccent
                                             : person.status == 'Unknown'
                                                 ? Colors.grey.shade300
-                                                : Color.fromARGB(
+                                                : const Color.fromARGB(
                                                     255, 136, 255, 0),
                                         borderRadius:
                                             BorderRadius.circular(10)),
@@ -171,13 +170,13 @@ class _PersonListState extends State<PersonList> {
                                       text: TextSpan(children: [
                                         TextSpan(
                                           text: person.status,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),
-                                        TextSpan(
+                                        const TextSpan(
                                           text: ' - ',
                                           style: TextStyle(
                                             color: Colors.white,
@@ -187,7 +186,7 @@ class _PersonListState extends State<PersonList> {
                                         ),
                                         TextSpan(
                                           text: person.species,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,
                                             fontWeight: FontWeight.w600,
@@ -200,7 +199,7 @@ class _PersonListState extends State<PersonList> {
                                   )
                                 ],
                               ),
-                              SizedBox(height: 14),
+                              const SizedBox(height: 14),
                               Text(
                                 'Origin:',
                                 style: TextStyle(
@@ -210,10 +209,10 @@ class _PersonListState extends State<PersonList> {
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),
-                              SizedBox(height: 2),
+                              const SizedBox(height: 2),
                               Text(
                                 person.location,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
@@ -221,11 +220,11 @@ class _PersonListState extends State<PersonList> {
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),
-                              SizedBox(height: 7),
+                              const SizedBox(height: 7),
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                       ],
